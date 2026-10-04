@@ -37,7 +37,12 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:"IBM Plex San
 button{font-family:inherit;}
 
 /* header */
-header{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:14px;}
+header{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:14px;}
+header h1 .spark{background:linear-gradient(90deg,#2F6FB0,#7A4FB5,#B23A62,#E07A2E);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.rainbow{display:flex;gap:3px;height:12px;margin-bottom:4px;}
+.rainbow > div{position:relative;border-radius:3px;overflow:hidden;background:color-mix(in srgb,var(--tc) 35%,var(--surface));}
+.rainbow > div i{position:absolute;inset:0 auto 0 0;background:var(--tc);}
+.rainbow-cap{font-size:11px;color:var(--muted);display:flex;justify-content:space-between;}
 header h1{font-family:"IBM Plex Serif",Georgia,serif;font-weight:600;font-size:30px;margin:0;letter-spacing:-.01em;}
 header .sub{color:var(--muted);font-size:13px;margin-top:4px;}
 header .spacer{flex:1;}
@@ -48,8 +53,9 @@ header .spacer{flex:1;}
 
 /* stats */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0;}
-.stat{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;}
-.stat .k{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;}
+.stat{--sc:var(--accent);background:color-mix(in srgb,var(--sc) 8%,var(--surface));border:1px solid color-mix(in srgb,var(--sc) 25%,var(--line));border-top:4px solid var(--sc);border-radius:10px;padding:12px 16px 14px;}
+.stat.c-blue{--sc:#3B6FD8;} .stat.c-purple{--sc:#8B5CF6;} .stat.c-orange{--sc:#E07A2E;} .stat.c-green{--sc:#2E9E5B;} .stat.c-red{--sc:#D14B3A;} .stat.c-amber{--sc:#D99A1E;}
+.stat .k{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--sc);font-weight:700;}
 .stat .v{font-size:26px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums;}
 .stat .v small{font-size:13px;font-weight:500;color:var(--muted);}
 .stat .h{font-size:12px;color:var(--muted);margin-top:2px;}
@@ -65,6 +71,7 @@ header .spacer{flex:1;}
 .today .col h2{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;margin:6px 0 8px;color:var(--muted);}
 .today ul{margin:0 0 6px;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px;}
 .today li{display:flex;gap:10px;align-items:baseline;font-size:14px;line-height:1.35;}
+.today .tcode{color:#fff;border-radius:4px;padding:0 5px;font-size:12.5px;}
 .today li .tag{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted);min-width:64px;flex:none;}
 .today li.late .tag{color:var(--late);}
 .today li .go{margin-left:auto;flex:none;font-size:12px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);border-radius:6px;padding:2px 8px;cursor:pointer;}
@@ -95,7 +102,9 @@ details.method a{color:var(--accent);}
 .btn.confirm{background:var(--late);border-color:var(--late);}
 
 /* topics */
-.topic{background:var(--surface);border:1px solid var(--line);border-radius:10px;margin-bottom:14px;overflow:hidden;}
+.topic{--tc:var(--accent);background:var(--surface);border:1px solid color-mix(in srgb,var(--tc) 30%,var(--line));border-left:6px solid var(--tc);border-radius:10px;margin-bottom:14px;overflow:hidden;}
+.topic > summary{background:color-mix(in srgb,var(--tc) 10%,var(--surface));}
+.topic .name{color:color-mix(in srgb,var(--tc) 70%,var(--ink));}
 .topic > summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:4px 14px;align-items:center;padding:13px 16px;}
 .topic > summary::-webkit-details-marker{display:none;}
 .topic .code{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:12px;color:#fff;border-radius:5px;padding:3px 7px;min-width:48px;text-align:center;}
@@ -115,7 +124,7 @@ details.method a{color:var(--accent);}
 
 .rows{border-top:1px solid var(--line);}
 .ch, .colhead{display:grid;grid-template-columns:52px minmax(0,1fr) 128px repeat(3,44px) 58px 44px 26px;gap:0 8px;align-items:center;padding:7px 14px;}
-.colhead{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600;padding-top:9px;padding-bottom:6px;border-bottom:1px solid var(--line);background:var(--paper);}
+.colhead{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:color-mix(in srgb,var(--tc) 75%,var(--muted));font-weight:700;padding-top:9px;padding-bottom:6px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--tc) 5%,var(--surface));}
 .colhead span{text-align:center;}
 .colhead span:nth-child(-n+3){text-align:left;}
 .ch{border-bottom:1px solid var(--line);}
@@ -144,14 +153,14 @@ details.method a{color:var(--accent);}
 .ch .meta .ok{color:var(--good);}
 .ch .meta:empty{display:none;}
 
-.cb{justify-self:center;width:22px;height:22px;border-radius:6px;border:2px solid var(--line-strong);background:transparent;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;color:var(--on-accent);font-size:13px;font-weight:700;line-height:1;}
-.cb:hover{border-color:var(--accent);}
-.cb.on{background:var(--good);border-color:var(--good);}
-.cb.on.skim{background:var(--faint);border-color:var(--faint);}
-.cb.on.review{background:var(--accent);border-color:var(--accent);}
+.cb{justify-self:center;width:22px;height:22px;border-radius:6px;border:2px solid var(--line-strong);background:transparent;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;line-height:1;}
+.cb:hover{border-color:var(--tc);}
+.cb.on{background:var(--tc);border-color:var(--tc);}
+.cb.on.skim{background:color-mix(in srgb,var(--tc) 45%,var(--surface));border-color:transparent;}
+.cb.on.review{background:#D99A1E;border-color:#D99A1E;}
 .cb .lbl{display:none;}
 
-.topicfoot{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding:10px 14px;border-top:1px solid var(--line);background:var(--paper);font-size:12.5px;color:var(--muted);}
+.topicfoot{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding:10px 14px;border-top:1px solid var(--line);background:color-mix(in srgb,var(--tc) 6%,var(--surface));font-size:12.5px;color:var(--muted);}
 .topicfoot input{width:58px;font-family:"IBM Plex Mono",monospace;font-size:12px;text-align:center;border:1px solid var(--line-strong);border-radius:6px;padding:4px;background:var(--surface);color:var(--ink);}
 
 .banner{background:var(--warn-tint);color:var(--warn);border-radius:8px;padding:10px 14px;font-size:13px;margin:16px 0 0;}
@@ -170,7 +179,7 @@ details.method a{color:var(--accent);}
   .ch .title{grid-column:1/-1;grid-row:2;}
   .ch .date{grid-column:1/-1;grid-row:3;width:auto;justify-self:start;}
   .ch .cb{justify-self:start;width:auto;height:auto;padding:4px 6px;font-size:12px;font-weight:600;color:var(--muted);gap:4px;}
-  .ch .cb.on{color:var(--on-accent);}
+  .ch .cb.on{color:#fff;}
   .ch .cb .lbl{display:inline;}
   .ch .pqscore{width:50px;}
   .ch .addnote{justify-self:end;}
@@ -184,12 +193,14 @@ details.method a{color:var(--accent);}
 <div class="wrap">
   <header>
     <div>
-      <h1>Aleen's CFA Tracker</h1>
+      <h1><span class="spark">Aleen's</span> CFA Tracker</h1>
       <div class="sub" id="examline"></div>
     </div>
     <div class="spacer"></div>
     <div class="sync"><span class="dot" id="syncdot"></span><span id="syncstate">Connecting…</span></div>
   </header>
+  <div class="rainbow" id="rainbow"></div>
+  <div class="rainbow-cap"><span>Each block is a topic, sized by its exam weight and filled as chapters are done</span><span id="rainbowpct"></span></div>
 
   <div class="banner hidden" id="rulebanner"></div>
 
@@ -556,26 +567,33 @@ details.method a{color:var(--accent);}
     var r = readiness(all);
     var mocks = all.filter(isMock).map(function(c){ return num(c.pqScore); }).filter(function(v){ return v != null; });
 
+    document.getElementById('rainbow').innerHTML = TOPICS.filter(function(t){ return !t.review; }).map(function(t){
+      var chs = content.filter(function(c){ return c.topic === t.key; });
+      var p = chs.filter(complete).length / chs.length * 100;
+      return '<div style="--tc:'+t.color+';flex:'+t.mid+'" title="'+esc(t.name)+' · '+t.weight+' · '+Math.round(p)+'% done"><i style="width:'+p+'%"></i></div>';
+    }).join('');
+    document.getElementById('rainbowpct').textContent = Math.round(nComplete / content.length * 100) + '% of chapters done';
+
     var statHTML = '';
-    statHTML += '<div class="stat"><div class="k">Chapters studied</div><div class="v">'+nStudied+' <small>/ '+content.length+'</small></div>' +
+    statHTML += '<div class="stat c-blue"><div class="k">Chapters studied</div><div class="v">'+nStudied+' <small>/ '+content.length+'</small></div>' +
       '<div class="h">'+nComplete+' with practice Qs · '+nReviewed+' final-reviewed</div>' +
       '<div class="bigbar"><div class="seg"><i style="width:'+(nComplete/content.length*100)+'%;background:var(--good)"></i>' +
       '<i style="width:'+((nStudied-nComplete)/content.length*100)+'%;background:var(--warn)"></i></div></div></div>';
-    statHTML += '<div class="stat '+(late.length ? 'late' : 'good')+'"><div class="k">Schedule</div><div class="v">' +
+    statHTML += '<div class="stat '+(late.length ? 'late c-red' : 'good c-green')+'"><div class="k">Schedule</div><div class="v">' +
       (late.length ? late.length + ' <small>behind</small>' : 'On track') + '</div><div class="h">' +
       (inReview ? 'Content phase finished' : pace.toFixed(1) + ' chapters / week needed') + '</div></div>';
-    statHTML += '<div class="stat '+(r.v == null ? '' : band(r.v) === 'good' ? 'good' : band(r.v) === 'warn' ? 'warn' : 'late')+'"><div class="k">Readiness</div><div class="v">' +
+    statHTML += '<div class="stat c-purple '+(r.v == null ? '' : band(r.v) === 'good' ? 'good' : band(r.v) === 'warn' ? 'warn' : 'late')+'"><div class="k">Readiness</div><div class="v">' +
       (r.v == null ? '—' : Math.round(r.v) + '<small>%</small>') + '</div><div class="h">' +
       (r.v == null ? 'Enter practice scores to see this' : 'weighted by exam share · ' + Math.round(r.coverage*100) + '% of exam measured') + '</div>' +
       '<div class="bigbar"><i style="width:'+(r.v||0)+'%;background:var(--'+(r.v==null?'faint':band(r.v)==='good'?'good':band(r.v)==='warn'?'warn':'late')+')"></i><span class="mark" style="left:'+GOOD+'%" title="70% target"></span></div></div>';
-    statHTML += '<div class="stat"><div class="k">Days to exam</div><div class="v">'+Math.max(0, daysLeft)+'</div><div class="h">' +
+    statHTML += '<div class="stat c-orange"><div class="k">Days to exam</div><div class="v">'+Math.max(0, daysLeft)+'</div><div class="h">' +
       (mocks.length ? 'Mock avg ' + Math.round(avg(mocks)) + '% (' + mocks.length + ' of 4)' : (studyDaysLeft + ' study days, then ' + s.buffer + ' for review')) + '</div></div>';
     document.getElementById('stats').innerHTML = statHTML;
 
     // ---- today ----
     var li = function(c, cls, tag, btn){
       var t = topicByKey[c.topic];
-      return '<li class="'+cls+'"><span class="tag">'+esc(tag)+'</span><span><b>'+t.code+' '+c.num+'</b> · '+esc(c.title)+'</span>' +
+      return '<li class="'+cls+'"><span class="tag">'+esc(tag)+'</span><span><b class="tcode" style="background:'+t.color+'">'+t.code+' '+c.num+'</b> '+esc(c.title)+'</span>' +
         (btn ? '<button class="go" data-go="'+btn+'" data-id="'+c.id+'">'+(btn==='study'?'Studied':btn==='done'?'Done':'✓ Recalled')+'</button>' : '') + '</li>';
     };
     var due = all.filter(function(c){ return !studied(c) && c.date && c.date <= today; });
@@ -628,7 +646,7 @@ details.method a{color:var(--accent);}
       var foot = t.review ? '' :
         '<div class="topicfoot"><label>Topic test (20–30 mixed Qs) <input class="ttscore" type="number" min="0" max="100" data-topic="'+t.key+'" value="'+esc((s.tt||{})[t.key] == null ? '' : s.tt[t.key])+'" placeholder="%"></label>' +
         '<span>' + (sc.v == null ? 'No scores yet' : 'Topic score <span class="score '+band(sc.v)+'">'+Math.round(sc.v)+'%</span> from ' + sc.src) + '</span></div>';
-      return '<details class="topic'+(dn===chs.length?' complete':'')+'" data-topic="'+t.key+'"'+(isOpen?' open':'')+'>' +
+      return '<details class="topic'+(dn===chs.length?' complete':'')+'" style="--tc:'+t.color+'" data-topic="'+t.key+'"'+(isOpen?' open':'')+'>' +
         '<summary><span class="code" style="background:'+t.color+'">'+t.code+'</span>' +
         '<div><div class="name">'+esc(t.name)+'</div><div class="meta">'+(t.weight ? 'Exam weight '+t.weight+' · ' : '')+range+'</div></div>' +
         '<div class="right">' + (sc ? '<span class="score '+band(sc.v)+'">'+(sc.v==null?'—':Math.round(sc.v)+'%')+'</span>' : '') +
