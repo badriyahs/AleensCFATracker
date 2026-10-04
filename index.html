@@ -2,7 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F7F5F0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14171C" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="CFA Tracker">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
 <title>Aleen's CFA Tracker</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Serif:wght@500;600&display=swap">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.85em%27 font-size=%2290%27 text-anchor=%27middle%27 x=%2750%27>%E2%96%B3</text></svg>">
@@ -168,24 +176,58 @@ details.method a{color:var(--accent);}
 .hidden{display:none !important;}
 
 @media (max-width:760px){
-  .wrap{padding:20px 16px 60px;}
-  header h1{font-size:24px;}
-  .stats{grid-template-columns:repeat(2,1fr);}
-  .today{grid-template-columns:1fr;}
+  .wrap{padding:18px 14px 60px;}
+  header{position:relative;padding-bottom:10px;}
+  header h1{font-size:26px;padding-right:70px;}
+  header .sub{font-size:12.5px;}
+  .sync{position:absolute;top:8px;right:0;font-size:11px;}
+  .rainbow{height:10px;gap:2px;}
+  .rainbow-cap{justify-content:flex-end;}
+  .rainbow-cap span:first-child{display:none;}
+
+  .stats{grid-template-columns:repeat(2,1fr);gap:8px;margin:14px 0;}
+  .stat{padding:10px 12px 11px;}
+  .stat .k{font-size:10px;}
+  .stat .v{font-size:22px;}
+  .stat .h{font-size:11.5px;line-height:1.35;}
+
+  .today{grid-template-columns:1fr;padding:12px 14px;margin-bottom:16px;}
+  .today li{font-size:14px;gap:8px;}
+  .today li .tag{min-width:52px;font-size:11px;}
+  .today li .go{padding:6px 10px;font-size:13px;border-radius:8px;}
+
+  details.method .body{padding:0 14px 12px;font-size:13px;}
+
+  .controls{gap:10px;}
+  .controls label{flex:1 1 140px;}
+  .controls input{font-size:16px;flex:1;min-width:0;}
+  .controls .spacer{display:none;}
+  .segbtn{width:100%;}
+  .segbtn button{flex:1;padding:9px 4px;font-size:13px;}
+  .controls .btn{flex:1;padding:10px 8px;}
+
+  .topic{margin-bottom:12px;}
+  .topic > summary{grid-template-columns:auto 1fr;padding:12px 12px 12px 10px;}
+  .topic .name{font-size:15px;}
+  .topic .right{grid-column:1/-1;}
   .colhead{display:none;}
-  .ch{grid-template-columns:repeat(5,auto) 1fr;gap:6px 6px;padding:10px 12px;}
-  .ch .num{grid-column:1/-2;grid-row:1;}
-  .ch .addnote{grid-column:-2/-1;grid-row:1;}
-  .ch .title{grid-column:1/-1;grid-row:2;}
-  .ch .date{grid-column:1/-1;grid-row:3;width:auto;justify-self:start;}
-  .ch .cb{justify-self:start;width:auto;height:auto;padding:4px 6px;font-size:12px;font-weight:600;color:var(--muted);gap:4px;}
+
+  /* chapter rows become small cards: number + date + note on top, title, then big tap targets */
+  .ch{display:flex;flex-wrap:wrap;align-items:center;gap:8px 6px;padding:12px 12px;}
+  .ch .num{order:1;font-size:12px;flex:1;}
+  .ch .date{order:2;width:auto;font-size:16px;padding:3px 6px;border-radius:8px;}
+  .ch.complete .date:invalid{display:none;}
+  .ch .addnote{order:3;font-size:18px;padding:4px 2px 4px 8px;}
+    .ch .title{order:4;flex:1 0 100%;font-size:16px;margin:0 0 2px -4px;}
+  .ch .cb{order:5;flex:1 1 0;width:auto;height:38px;border-radius:9px;font-size:13px;font-weight:600;color:var(--muted);gap:4px;}
   .ch .cb.on{color:#fff;}
   .ch .cb .lbl{display:inline;}
-  .ch .pqscore{width:50px;}
-  .ch .addnote{justify-self:end;}
-  .ch .note,.ch .meta{grid-column:1/-1;}
-  .topic > summary{grid-template-columns:auto 1fr;}
-  .topic .right{grid-column:1/-1;}
+  .ch .pqscore{order:5;flex:0 0 58px;height:38px;font-size:16px;border-radius:9px;}
+  .ch > span:empty{display:none;}
+  .ch .note{order:6;flex:1 0 100%;font-size:16px;margin:2px 0 0 -4px;}
+  .ch .meta{order:7;flex:1 0 100%;}
+  .topicfoot{padding:12px;}
+  .topicfoot input{font-size:16px;width:64px;}
 }
 </style>
 </head>
